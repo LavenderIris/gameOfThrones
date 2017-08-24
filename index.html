@@ -9,60 +9,51 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            // when you click on a certain banner, grab the data and display on each of the houses
             $('img').click(function() {
                 var url = "";
+                $('#desc').empty();
                 if ($(this).attr('id') === 't') {
                     console.log("targaryen");
                     url = "https://anapioficeandfire.com/api/houses/378";
-                    console.log(url);
-
                     getData(url);
-
-                    // $.get(url, function(res) {
-                    //     console.log('in here');
-                    //     console.log(res);
-                    //     var html = '<h3>' + res.name + '</h3>';;
-                    //     html += '<p>Words:' + res.words + '</p><p>Titles</p><ul>';
-
-                    //     for (var i = 0; i < res.titles.length; i++) {
-                    //         html += '<li>' + res.titles[i] + '</li>';
-                    //     }
-
-
-                    //     html += '</ul>'
-                    //     $('#desc').append(html);
-
-                    // }, 'json');
                 } else if ($(this).attr('id') === 'b') {
                     console.log('baratheon');
-                    url = 'https://anapioficeandfire.com/api/houses/16';
-
+                    url = 'https://anapioficeandfire.com/api/houses/16/';
                     getData(url);
-                }
+                } else if ($(this).attr('id') === 's') {
+                    console.log('stark')
+                    url = 'https://anapioficeandfire.com/api/houses/362/'
+                    getData(url);
+                } else if ($(this).attr('id') === 'l') {
+                    url = 'https://www.anapioficeandfire.com/api/houses/229/';
+                    console.log('lannister');
+                    getData(url);
 
+                }
             });
 
+            // gets the data and shows it for each of the houses
             function getData(url) {
                 $.get(url, function(res) {
-                    console.log('in here');
-                    console.log(res);
+                    // console.log(res);
                     var html = '<h3>' + res.name + '</h3>';;
-                    html += '<p>Words:' + res.words + '</p><p>Titles</p><ul>';
-
+                    html += '<p><b>Words:</b> ' + res.words + '</p><p><b>Titles</b></p><ul>';
+                    //go thru each of the titles and display them as a list
                     for (var i = 0; i < res.titles.length; i++) {
                         html += '<li>' + res.titles[i] + '</li>';
                     }
-
-                    html += '</ul>'
+                    html += '</ul>';
+                    html += '<p><b>Coat of Arms: </b>' + res.coatOfArms + '</p>';
+                    html += '<p><b>Region </b>' + res.region + '</p>';
                     $('#desc').append(html);
-
                 }, 'json');
             }
 
         });
     </script>
 </head>
-
 
 <body>
     <div id="banner">
