@@ -1,0 +1,23 @@
+img {
+    display: inline-block;
+    height: 200px;
+    width: auto;
+}
+
+#desc {
+    height: 300px;
+    width: 500px;
+    background-color: yellow;
+    margin-left: 106px;
+    border: black 2px solid;
+    padding-left: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+#banner {
+    width: 725px;
+    height: 480px;
+}
